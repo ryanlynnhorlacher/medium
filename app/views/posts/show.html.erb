@@ -1,5 +1,23 @@
+<nav>
+  	<ul class="breadcrumb">
+  		<li role="presentation" class="active"><%= link_to 'Home', root_path %></a></li>
+  		<li role="presentation" class="active"><%= link_to @post.title, post_path(@post) %></a></li>
+  	</ul>
+  </nav>
+
+
 <h1><%= @post.title %></h1>
 
-<% @post.content %>
+<%= @post.content %>
+<br>
 
-<%= link_to 'Home', root_path %>
+<% if @comments.any? %>
+	<% @comments.each do |comment| %>
+		<%= comment.content %>
+		<br>
+	<% end %>
+<% end %>
+
+<%= link_to 'Comment', new_comment_path(@post) %>
+
+

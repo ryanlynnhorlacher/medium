@@ -1,0 +1,18 @@
+<% if @comment.errors.any? %>
+	<% @comment.errors.full_messages.each do |error| %>
+		<%= error %>
+	<% end %>
+	<% else %>
+	<p>No errors</p>
+<% end %>
+<%= form_for @comment do |f| %>
+
+	<%= f.label :content %>
+	<%= f.text_area :content %>
+
+	<% f.hidden_field :post_id, value: @post.id %>
+	<% f.hidden_field :user_id, value: current_user.id %>
+	<br>
+
+	<%= f.submit %>
+	<% end %>
