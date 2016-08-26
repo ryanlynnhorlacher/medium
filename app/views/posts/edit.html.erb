@@ -1,2 +1,10 @@
+<nav>
+  	<ul class="breadcrumb">
+  		<li role="presentation"><%= link_to 'Home', root_path %></a></li>
+  		<li role="presentation"><%= link_to @post.title.capitalize, post_path(@post) %></a></li>
+  		<li role="presentation" class="active">Edit Post</li>
+  		<li class="pull-right"><%= link_to 'Add Post', new_post_path(current_user) %></li>
+  	</ul>
+  </nav>
 <h1>Posts#edit</h1>
 <p>Find me in app/views/posts/edit.html.erb</p>

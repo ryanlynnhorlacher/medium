@@ -2,17 +2,17 @@
 	<% @comment.errors.full_messages.each do |error| %>
 		<%= error %>
 	<% end %>
-	<% else %>
-	<p>No errors</p>
 <% end %>
+<div class='form_group'>
 <%= form_for @comment do |f| %>
 
 	<%= f.label :content %>
-	<%= f.text_area :content %>
+	<%= f.text_area :content, class: 'form-control'  %>
 
 	<% f.hidden_field :post_id, value: @post.id %>
 	<% f.hidden_field :user_id, value: current_user.id %>
 	<br>
 
-	<%= f.submit %>
+	<%= f.submit class: 'btn btn-info'%>
 	<% end %>
+</div>

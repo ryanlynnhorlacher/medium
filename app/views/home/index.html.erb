@@ -1,6 +1,9 @@
 <nav>
   	<ul class="breadcrumb">
-  		<li role="presentation" class="active"><%= link_to 'Home', root_path %></a></li>
+  		<li role="presentation" class="active"><%= link_to 'Home', root_path %></li>
+  		<% if current_user %>
+        <li class="pull-right"><%= link_to 'Add Post', new_post_path(current_user) %></li>
+      <% end %>
   	</ul>
   </nav>
 
@@ -11,10 +14,14 @@
 <% if @posts.any? %>
 	<% @posts.each do |post| %>
 		<%= link_to post.title, post_path(post) %> <%=link_to User.find(post.user_id).username, user_posts_path(post.user_id) %>
+		<% if current_user %>
+			<% if post.user_id == current_user.id %>
+				<%= link_to 'Delete', delete_post_path(post), method: :delete %>
+				<%= link_to 'Edit', edit_post_path(post) %>
+			<% end %>
+		<% end %>
 		<br>
 	<% end %>
-<% else %>
-	<%= link_to 'Create post', new_post_path(current_user) %>
 <% end %>
 <hr>
 <% if current_user %>

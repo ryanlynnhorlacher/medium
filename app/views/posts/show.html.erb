@@ -1,23 +1,28 @@
 <nav>
   	<ul class="breadcrumb">
-  		<li role="presentation" class="active"><%= link_to 'Home', root_path %></a></li>
-  		<li role="presentation" class="active"><%= link_to @post.title, post_path(@post) %></a></li>
+  		<li role="presentation"><%= link_to 'Home', root_path %></li>
+  		<li role="presentation"><%= link_to User.find(@post.user_id).username.capitalize, user_posts_path(@post.user_id) %></li>
+  		<li role="presentation" class="active"><%= @post.title.capitalize %></li>
+      <% if current_user %>
+        <li class="pull-right"><%= link_to 'Add Post', new_post_path(current_user) %></li>
+      <% end %>
   	</ul>
   </nav>
 
 
-<h1><%= @post.title %></h1>
+<h3><%= @post.title.capitalize %></h3>
+<h4> Written by <%= User.find(@post.user_id).username.capitalize %> <h4>
 
-<%= @post.content %>
-<br>
+<p><%= @post.content %></p>
+<hr>
 
 <% if @comments.any? %>
 	<% @comments.each do |comment| %>
 		<%= comment.content %>
-		<br>
+		<hr>
 	<% end %>
 <% end %>
 
-<%= link_to 'Comment', new_comment_path(@post) %>
+<%= link_to 'Comment', new_comment_path(@post), class: 'btn btn-info'%>
 
 

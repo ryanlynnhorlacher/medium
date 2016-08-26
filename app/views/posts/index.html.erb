@@ -1,13 +1,16 @@
 <nav>
   	<ul class="breadcrumb">
   		<li role="presentation"><%= link_to 'Home', root_path %></a></li>
-  		<li role="presentation" class="active"><%= link_to @user.username, user_posts_path(@user) %></a></li>
+  		<li role="presentation" class="active"><%=@user.username.capitalize%></li>
+  		<% if current_user %>
+        <li class="pull-right"><%= link_to 'Add Post', new_post_path(current_user) %></li>
+      <% end %>
   	</ul>
   </nav>
 
 <h1> Posts from <%= @user.username %> </h1>
 <% @posts.each do |post| %>
-	<div> Title: <%= post.title %> </div>
-	<div> Content: <%= post.content %> </div>
+	<div> <%=link_to post.title.capitalize, post_path(post) %> </div>
+	<div> <%= post.content %> </div>
 	<br>
 <% end %>

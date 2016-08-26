@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
 	before_action :post, except: [:index, :new, :create]
 	before_action :user, except: [:show, :edit, :update, :destroy]
 
