@@ -19,6 +19,14 @@
 <% if @comments.any? %>
 	<% @comments.each do |comment| %>
 		<%= comment.content %>
+    <% if current_user %>
+      <% if current_user.id == comment.user_id %>
+        <%= link_to 'Edit', edit_comment_path(comment) %>
+        <%= link_to 'Delete', delete_comment_path(comment), method: :delete %>
+      <% elsif current_user.id == @post.user_id %>
+        <%= link_to 'Delete', delete_comment_path(comment), method: :delete %>
+      <% end %>
+    <% end %>
 		<hr>
 	<% end %>
 <% end %>

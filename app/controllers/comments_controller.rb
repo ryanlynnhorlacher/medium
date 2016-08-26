@@ -22,14 +22,16 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to post_path(@post)
+      redirect_to post_path(@comment.post_id)
     else
       render :edit
     end
   end
 
   def destroy
+    post_id = @comment.post_id
     @comment.destroy
+    redirect_to post_path(post_id)
   end
 
   private

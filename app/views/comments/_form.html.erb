@@ -4,13 +4,13 @@
 	<% end %>
 <% end %>
 <div class='form_group'>
-<%= form_for @comment do |f| %>
+<%= form_for [@comment] do |f| %>
 
 	<%= f.label :content %>
 	<%= f.text_area :content, class: 'form-control'  %>
 
-	<% f.hidden_field :post_id, value: @post.id %>
-	<% f.hidden_field :user_id, value: current_user.id %>
+	<% f.hidden_field :post_id %>
+	<% f.hidden_field :user_id %>
 	<br>
 
 	<%= f.submit class: 'btn btn-info'%>

@@ -7,20 +7,20 @@ Rails.application.routes.draw do
   }
 
 # posts
-  get '/users/:user_id', to: 'posts#index', as: 'user_posts'
-  get '/posts/:id/edit', to: 'posts#edit', as: 'edit_post'
-  put '/posts/:id', to: 'posts#update'
-  get '/posts/:id', to: 'posts#show', as: 'post'
+  get '/users/:user_id/posts', to: 'posts#index', as: 'user_posts'
+  post '/users/:user_id/posts', to: 'posts#create', as: 'posts'
   get '/users/:user_id/posts/new', to: 'posts#new', as: 'new_post'
-  post '/users/:user_id', to: 'posts#create'
-  delete '/posts/:id', to: 'posts#destroy', as: 'delete_post'
+  get '/posts/:id/edit', to: 'posts#edit', as: 'edit_post'
+  get '/posts/:id', to: 'posts#show', as: 'post'
+  patch '/posts/:id', to: 'posts#update'
+  delete '/posts/:id', to: 'posts#destroy' 
 
 
 #comments
   get '/posts/:post_id/comments/new', to: 'comments#new', as: 'new_comment'
   post '/posts/:post_id', to: 'comments#create', as: 'comments'
-  get '/comments/:id', to: 'comments#edit', as: 'edit_comment'
-  put '/comments/:id', to: 'comments#update'
+  patch '/comments/:id', to: 'comments#update', as: 'comment'
+  get '/comments/:id/edit', to: 'comments#edit', as: 'edit_comment'
   delete '/comments/:id', to: 'comments#destroy', as: 'delete_comment'
 
 
