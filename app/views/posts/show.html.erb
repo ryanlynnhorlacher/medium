@@ -1,36 +1,47 @@
-<nav>
-  	<ul class="breadcrumb">
-  		<li role="presentation"><%= link_to 'Home', root_path %></li>
-  		<li role="presentation"><%= link_to User.find(@post.user_id).username.capitalize, user_posts_path(@post.user_id) %></li>
-  		<li role="presentation" class="active"><%= @post.title.capitalize %></li>
-      <% if current_user %>
-        <li class="pull-right"><%= link_to 'Add Post', new_post_path(current_user) %></li>
-      <% end %>
-  	</ul>
-  </nav>
-
-
-<h3><%= @post.title.capitalize %></h3>
-<h4> Written by <%= User.find(@post.user_id).username.capitalize %> <h4>
-
-<p><%= @post.content %></p>
-<hr>
-
-<% if @comments.any? %>
-	<% @comments.each do |comment| %>
-		<%= comment.content %>
+<nav class='nav-bar'>
+	<ul class="breadcrumb">
+		<li role="presentation"><%= link_to 'Home', root_path %></li>
+		<li role="presentation"><%= link_to User.find(@post.user_id).username.capitalize, user_posts_path(@post.user_id) %></li>
+		<li role="presentation" class="active"><%= @post.title.capitalize %></li>
     <% if current_user %>
-      <% if current_user.id == comment.user_id %>
-        <%= link_to 'Edit', edit_comment_path(comment) %>
-        <%= link_to 'Delete', delete_comment_path(comment), method: :delete %>
-      <% elsif current_user.id == @post.user_id %>
-        <%= link_to 'Delete', delete_comment_path(comment), method: :delete %>
-      <% end %>
+      <li class="pull-right"><%= link_to 'Add Post', new_post_path(current_user) %></li>
     <% end %>
-		<hr>
-	<% end %>
-<% end %>
+	</ul>
+</nav>
 
+<div class="container">
+  <h3><%= @post.title.capitalize %></h3>
+  <h4> Written by <%= User.find(@post.user_id).username.capitalize %> <h4>
+
+  <p><%= @post.content %></p>
+  <hr>
+
+  <div class="panel panel-default">
+  <% if @comments.any? %>
+  <% @comments.each do |comment| %>
+    <blockquote>
+  		<%= comment.content %>
+        <footer><%=current_user.id%></footer>
+    </blockquote>
+      <br/>
+      <% if current_user %>
+        <% if current_user.id == comment.user_id %>
+        <br/>
+        <div><button type="button" class="btn btn-default">
+          <%= link_to 'Edit', edit_comment_path(comment) %>
+        </div>
+        <div><button type="button" class="btn btn-default">
+          <%= link_to 'Delete', delete_comment_path(comment), method: :delete %>
+        </div>
+        <% elsif current_user.id == @post.user_id %>
+        <div><button type="button" class="btn btn-default">
+          <%= link_to 'Delete', delete_comment_path(comment), method: :delete %>
+        </div>
+        <% end %>
+      <% end %>
+  	<% end %>
+  <% end %>
+    <br/>
+  </div>
+</div>
 <%= link_to 'Comment', new_comment_path(@post), class: 'btn btn-info'%>
-
-

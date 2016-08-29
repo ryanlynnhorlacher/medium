@@ -1,2 +1,74 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+
+.breadcrumb {
+  background-color: #634a4f;
+}
+
+body {
+  background-color: #999182;
+}
+
+h1 {
+  text-align: center;
+  border-bottom: 2px solid #424242;
+}
+
+a {
+  color: #212121;
+}
+
+a:hover {
+  color: #ffd892;
+}
+
+.panel {
+  background-color: #c9b9ac;
+  width: 60%;
+  margin: 0 20%;
+  height: 100%;
+  padding: 10px;
+}
+
+.btn {
+  margin: 8px;
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.btn:hover{
+  background-color: #634a4f;
+}
+
+.comment {
+  display: inline-block;
+}
+
+form {
+  background: #634a4f;
+  margin: auto;
+  position: relative;
+  width: 400px;
+  height: 300px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 24px;
+  font-weight: bold;
+  color: #212121;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #999;
+  border: inset 1px solid #333;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+input {
+  width: 375px;
+  display: block;
+  border: 1px solid #999;
+  height: 25px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
